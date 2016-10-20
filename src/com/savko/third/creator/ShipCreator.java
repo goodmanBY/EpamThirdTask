@@ -8,7 +8,7 @@ import java.util.List;
 public class ShipCreator {
 
     /**
-     * This method create number of needed ships and start threads
+     * This method creates number of needed ships and start threads
      *
      * @param i number of needed ships
      */

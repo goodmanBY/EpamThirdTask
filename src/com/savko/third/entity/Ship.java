@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Ship extends Thread {
 
-    public static final int MAXIMUM_CAPACITY_OF_SHIP = 20;
-    private Logger LOGGER = Logger.getLogger(Ship.class);
+    private static final int MAXIMUM_CAPACITY_OF_SHIP = 20;
+    private static Logger LOGGER = Logger.getLogger(Ship.class);
     private int currentCargo;
 
     public Ship(int cargo) {
@@ -21,7 +21,7 @@ public class Ship extends Thread {
 
     @Override
     public void run() {
-        Harbor harbor = Harbor.getSingleton();
+        Harbor harbor = Harbor.getInstance();
         Storage storage = harbor.getStorage();
         boolean process = true;
         while (process) {
@@ -31,8 +31,8 @@ public class Ship extends Thread {
                         LOGGER.info("[Ship with id - " + this.getId() + "] " +
                                 "[Cargo of ship - " + getCurrentCargo() + "] " +
                                 "[Lock pear with id - " + harborPier.getPierId() + "]");
-                        LOGGER.info("Process cargo...");
-                        TimeUnit.SECONDS.sleep(5);
+                        LOGGER.info("Process cargo for ship with id - " + this.getId());
+                        TimeUnit.SECONDS.sleep(3);
                         if (currentCargo > 0) {
                             currentCargo = storage.transportCargoFromShipToStorage(currentCargo);
                         } else {
@@ -40,7 +40,8 @@ public class Ship extends Thread {
                         }
                         LOGGER.info("[Final storage value = " + storage.getStorageCapacity() + "]");
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        process = false;
+                        LOGGER.error("Something went wrong with the ship. Ship has been destroyed.");
                     } finally {
                         harborPier.getLocker().unlock();
                     }

@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Storage {
 
-    public final int MAXIMUM_CAPACITY_OF_STORAGE = 100;
+    private final int MAXIMUM_CAPACITY_OF_STORAGE = 100;
     private int storageCapacity = 0;
     private Lock storageLock = new ReentrantLock();
 
@@ -15,7 +15,7 @@ public class Storage {
     }
 
     /**
-     * This method transport incoming cargo from ship to the storage
+     * This method transports incoming cargo from a ship to the storage
      *
      * @param incomingCargo incoming cargo from ship
      * @return cargo after unload
@@ -37,10 +37,10 @@ public class Storage {
     }
 
     /**
-     * This method transport
+     * This method transports cargo from the storage to a ship
      *
      * @param expectedCargo expected cargo for the ship
-     * @return maximum cargo for ship
+     * @return cargo for a ship
      */
     public int transportCargoFromStorageToShip(int expectedCargo) {
         int result = 0;

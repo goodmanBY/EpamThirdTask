@@ -17,6 +17,4 @@ public class AppRunner {
         ShipCreator.createAndStart(3);
 
     }
-
-
 }

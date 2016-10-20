@@ -11,7 +11,7 @@ public class Harbor {
         storage = new Storage();
     }
 
-    public static Harbor getSingleton() {
+    public static Harbor getInstance() {
         return StaticHolder.INSTANCE;
     }
 

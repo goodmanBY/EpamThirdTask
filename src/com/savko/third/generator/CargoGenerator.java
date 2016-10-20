@@ -5,7 +5,7 @@ import java.util.Random;
 public class CargoGenerator {
 
     /**
-     * This method generate random number for current cargo
+     * This method generates random number for current cargo
      *
      * @return current cargo
      */
