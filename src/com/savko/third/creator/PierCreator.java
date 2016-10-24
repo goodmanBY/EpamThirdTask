@@ -8,11 +8,11 @@ public class PierCreator {
     /**
      * This method creates number of needed piers for loading or unloading cargo
      *
-     * @param i number of needed piers
+     * @param numberOfPiers number of needed piers
      */
-    public static void createPiers(int i) {
-        for (int j = 1; j <= i; j++) {
-            Harbor.getInstance().addPier(Pier.createPier(j));
+    public static void createPiers(int numberOfPiers) {
+        for (int i = 1; i <= numberOfPiers; i++) {
+            Harbor.getInstance().addPier(Pier.createPier(i));
         }
     }
 

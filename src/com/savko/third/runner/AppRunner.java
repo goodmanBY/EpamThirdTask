@@ -4,7 +4,6 @@ import com.savko.third.creator.PierCreator;
 import com.savko.third.creator.ShipCreator;
 import org.apache.log4j.Logger;
 
-
 public class AppRunner {
 
     private static Logger LOGGER = Logger.getLogger(AppRunner.class);
@@ -13,8 +12,8 @@ public class AppRunner {
 
         LOGGER.info("Start program.");
 
-        PierCreator.createPiers(2);
-        ShipCreator.createAndStart(3);
+        PierCreator.createPiers(3);
+        ShipCreator.createAndStart(10);
 
     }
 }

@@ -5,23 +5,23 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Pier {
 
-    private final Lock locker = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
     private int pierId;
 
     public Pier(int pierId) {
         this.pierId = pierId;
     }
 
-    public static Pier createPier(int i) {
-        return new Pier(i);
+    public static Pier createPier(int numberOfPiers) {
+        return new Pier(numberOfPiers);
     }
 
     public int getPierId() {
         return pierId;
     }
 
-    public Lock getLocker() {
-        return locker;
+    public Lock getLock() {
+        return lock;
     }
 
 }

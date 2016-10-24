@@ -10,6 +10,7 @@ public class Ship extends Thread {
     private static final int MAXIMUM_CAPACITY_OF_SHIP = 20;
     private static Logger LOGGER = Logger.getLogger(Ship.class);
     private int currentCargo;
+    private static final int unloadingTime = 3;
 
     public Ship(int cargo) {
         this.currentCargo = cargo;
@@ -26,13 +27,13 @@ public class Ship extends Thread {
         boolean process = true;
         while (process) {
             for (Pier harborPier : harbor.getPiers()) {
-                if (harborPier.getLocker().tryLock()) {
+                if (harborPier.getLock().tryLock()) {
                     try {
                         LOGGER.info("[Ship with id - " + this.getId() + "] " +
                                 "[Cargo of ship - " + getCurrentCargo() + "] " +
                                 "[Lock pear with id - " + harborPier.getPierId() + "]");
                         LOGGER.info("Process cargo for ship with id - " + this.getId());
-                        TimeUnit.SECONDS.sleep(3);
+                        TimeUnit.SECONDS.sleep(unloadingTime);
                         if (currentCargo > 0) {
                             currentCargo = storage.transportCargoFromShipToStorage(currentCargo);
                         } else {
@@ -43,7 +44,7 @@ public class Ship extends Thread {
                         process = false;
                         LOGGER.error("Something went wrong with the ship. Ship has been destroyed.");
                     } finally {
-                        harborPier.getLocker().unlock();
+                        harborPier.getLock().unlock();
                     }
                 }
             }

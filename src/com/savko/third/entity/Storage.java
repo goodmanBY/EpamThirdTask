@@ -22,8 +22,8 @@ public class Storage {
      */
     public int transportCargoFromShipToStorage(int incomingCargo) {
         int rest = 0;
+        storageLock.lock();
         try {
-            storageLock.lock();
             if (storageCapacity + incomingCargo <= MAXIMUM_CAPACITY_OF_STORAGE) {
                 this.storageCapacity += incomingCargo;
             } else {
@@ -44,8 +44,8 @@ public class Storage {
      */
     public int transportCargoFromStorageToShip(int expectedCargo) {
         int result = 0;
+        storageLock.lock();
         try {
-            storageLock.lock();
             if (storageCapacity >= expectedCargo) {
                 result = expectedCargo;
                 storageCapacity -= expectedCargo;
