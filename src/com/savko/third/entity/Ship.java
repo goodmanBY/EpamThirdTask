@@ -10,7 +10,7 @@ public class Ship extends Thread {
     private static final int MAXIMUM_CAPACITY_OF_SHIP = 20;
     private static Logger LOGGER = Logger.getLogger(Ship.class);
     private int currentCargo;
-    private static final int unloadingTime = 3;
+    private static final int processingTime = 3;
 
     public Ship(int cargo) {
         this.currentCargo = cargo;
@@ -33,7 +33,7 @@ public class Ship extends Thread {
                                 "[Cargo of ship - " + getCurrentCargo() + "] " +
                                 "[Lock pear with id - " + harborPier.getPierId() + "]");
                         LOGGER.info("Process cargo for ship with id - " + this.getId());
-                        TimeUnit.SECONDS.sleep(unloadingTime);
+                        TimeUnit.SECONDS.sleep(processingTime);
                         if (currentCargo > 0) {
                             currentCargo = storage.transportCargoFromShipToStorage(currentCargo);
                         } else {
