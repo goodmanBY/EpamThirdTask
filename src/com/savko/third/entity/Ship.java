@@ -1,6 +1,7 @@
 package com.savko.third.entity;
 
 import com.savko.third.generator.CargoGenerator;
+import com.savko.third.processor.CargoProcessor;
 import org.apache.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
@@ -8,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class Ship extends Thread {
 
     private static final int MAXIMUM_CAPACITY_OF_SHIP = 20;
+    private static final int processingTime = 3;
     private static Logger LOGGER = Logger.getLogger(Ship.class);
     private int currentCargo;
-    private static final int processingTime = 3;
 
     public Ship(int cargo) {
         this.currentCargo = cargo;
@@ -35,9 +36,9 @@ public class Ship extends Thread {
                         LOGGER.info("Process cargo for ship with id - " + this.getId());
                         TimeUnit.SECONDS.sleep(processingTime);
                         if (currentCargo > 0) {
-                            currentCargo = storage.transportCargoFromShipToStorage(currentCargo);
+                            currentCargo = CargoProcessor.transportCargoFromShipToStorage(currentCargo);
                         } else {
-                            currentCargo = storage.transportCargoFromStorageToShip(MAXIMUM_CAPACITY_OF_SHIP);
+                            currentCargo = CargoProcessor.transportCargoFromStorageToShip(MAXIMUM_CAPACITY_OF_SHIP);
                         }
                         LOGGER.info("[Final storage value = " + storage.getStorageCapacity() + "]");
                     } catch (InterruptedException e) {

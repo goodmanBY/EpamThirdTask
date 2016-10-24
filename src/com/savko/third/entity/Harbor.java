@@ -6,6 +6,7 @@ public class Harbor {
 
     private Storage storage;
     private ArrayList<Pier> piers;
+
     private Harbor() {
         piers = new ArrayList<>();
         storage = new Storage();
@@ -25,10 +26,6 @@ public class Harbor {
 
     public Storage getStorage() {
         return storage;
-    }
-
-    public void setStorage(Storage storage) {
-        this.storage = storage;
     }
 
     private static class StaticHolder {

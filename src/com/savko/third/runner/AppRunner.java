@@ -12,8 +12,8 @@ public class AppRunner {
 
         LOGGER.info("Start program.");
 
-        PierCreator.createPiers(3);
-        ShipCreator.createAndStart(10);
+        PierCreator.createPiers(2);
+        ShipCreator.createAndStart(3);
 
     }
 }
