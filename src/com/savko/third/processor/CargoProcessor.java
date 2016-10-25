@@ -21,7 +21,7 @@ public class CargoProcessor {
             if (currentCapacity + incomingCargo <= Storage.MAXIMUM_CAPACITY_OF_STORAGE) {
                 storage.setStorageCapacity(currentCapacity + incomingCargo);
             } else {
-                rest = incomingCargo - Storage.MAXIMUM_CAPACITY_OF_STORAGE - currentCapacity;
+                rest = incomingCargo - (Storage.MAXIMUM_CAPACITY_OF_STORAGE - currentCapacity);
                 storage.setStorageCapacity(Storage.MAXIMUM_CAPACITY_OF_STORAGE);
             }
         } finally {
